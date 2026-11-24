@@ -19,6 +19,9 @@ Split train/test **by person_id** so one person never appears in both.
 
 **Files:**
 - `app.py`: Streamlit entry point (`streamlit run app.py`)
+- `features.py`: builds the modeling table (merge same-minute drinks, cap mg at 1000, answers
+  `has_next` / `hours_to_next`, features known at drink time). Use it for EDA and the M3 model.
+- `eda_plan.md` + `notebooks/eda.ipynb`: M2 data exploration plan (Hebrew) and the notebook that runs it
 - `data/`: dataset, prep script, raw downloads (git-ignored)
 - `requirements.txt`: pinned versions; pin any library you add
 
