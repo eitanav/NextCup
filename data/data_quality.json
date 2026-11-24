@@ -1,0 +1,69 @@
+{
+  "raw_items": 206183,
+  "raw_items_by_recall": {
+    "1": 112683,
+    "2": 93500
+  },
+  "missing_caffeine_raw": 1747,
+  "unreliable_items": 3513,
+  "unreliable_person_days": 294,
+  "repeated_item_keys": 0,
+  "missing_demographics_reliable_items": 0,
+  "underage_items_reliable": 60935,
+  "unmapped_food_items_adults": 0,
+  "invalid_selected_beverage_items": 0,
+  "excluded_person_days_with_invalid_beverage": 0,
+  "cohort": {
+    "threshold_mg_per_item": 10,
+    "eligible_beverage_items": 11670,
+    "eligible_caffeine_events": 11453,
+    "merged_caffeine_events": 215,
+    "eligible_coffee_items": 5697,
+    "merged_coffee_events": 150,
+    "coffee_rows": 5623,
+    "coffee_person_days": 4443,
+    "coffee_people": 2704,
+    "next_coffees": 1180,
+    "coffee_on_half_hour": 5164,
+    "high_dose_events": 26,
+    "max_event_caffeine_mg": 5040.0
+  },
+  "sensitivity": [
+    {
+      "threshold_mg_per_item": 1,
+      "eligible_beverage_items": 12505,
+      "eligible_caffeine_events": 12257,
+      "merged_caffeine_events": 246,
+      "eligible_coffee_items": 6228,
+      "merged_coffee_events": 177,
+      "coffee_rows": 6142,
+      "coffee_person_days": 4813,
+      "coffee_people": 2886,
+      "next_coffees": 1329,
+      "coffee_on_half_hour": 5634,
+      "high_dose_events": 26,
+      "max_event_caffeine_mg": 5040.0
+    },
+    {
+      "threshold_mg_per_item": 20,
+      "eligible_beverage_items": 11077,
+      "eligible_caffeine_events": 10892,
+      "merged_caffeine_events": 183,
+      "eligible_coffee_items": 5669,
+      "merged_coffee_events": 138,
+      "coffee_rows": 5597,
+      "coffee_person_days": 4427,
+      "coffee_people": 2694,
+      "next_coffees": 1170,
+      "coffee_on_half_hour": 5139,
+      "high_dose_events": 26,
+      "max_event_caffeine_mg": 5040.0
+    }
+  ],
+  "source_sha256": {
+    "DR1IFF_J.xpt": "dc0d7a563f393bd368e23b524fbfd6f98a960f3932bfa8931ca35e6dbb0b6d4f",
+    "DR2IFF_J.xpt": "805af3e91647dc4e62aff5b3758cfb94802123f443ca6bc0e0cb2ead93e5f895",
+    "DEMO_J.xpt": "c0b46e0345ea19404928656277c8b0d10b0cca348a9b2fe4fc3c67e8b7ee73ec",
+    "WWEIA1718_foodcat_FNDDS.xlsx": "527f5096922b5e91cfb0212a1750568ee178a1dd90fc82d20c7ce43bf2f9d10e"
+  }
+}

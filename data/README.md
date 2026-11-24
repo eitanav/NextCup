@@ -1,39 +1,32 @@
-# data/
+# מילון הנתונים
 
-| File | What | In git? |
+`next_coffee_events.csv` הוא קובץ M2/M3. שורה היא אירוע קפה מקטגוריית USDA 7302 עם לפחות פריט אחד שמכיל 10 מ״ג קפאין ומעלה. האירועים מסודרים לפי משתתף, יום דיווח ודקה. הם כוללים 5,623 שורות ו־18 עמודות.
+
+| עמודה | סוג ויחידה | משמעות |
 |---|---|---|
-| `caffeine_events.csv` | One row per caffeinated drink (≥ 10 mg) by an adult. 11,703 rows × 11 columns | Yes (0.9 MB) |
-| `prepare_data.py` | Downloads the raw NHANES files and builds the CSV | Yes |
-| `raw/` | Raw CDC `.xpt` files (~145 MB) | No (`.gitignore`) |
+| `person_id` | מזהה שלם | SEQN ציבורי של NHANES. משמש לקיבוץ ולחלוקת הנתונים. |
+| `recall_day` | קטגוריה 1 או 2 | שיחת הדיווח הראשונה או השנייה, שהתקיימו בימים נפרדים. |
+| `split` | train או test | הקצאה קבועה של כל האירועים של משתתף לפי גיבוב של המזהה. |
+| `weekday` | קטגוריה Sun–Sat | היום בשבוע שעליו דווח. |
+| `age_years` | שנות גיל שלמות | מגיל 18. הערך 80 מציין 80 ומעלה. |
+| `sex` | male או female | הסיווג בקובץ הדמוגרפי של NHANES. |
+| `clock_time` | טקסט HH:MM | השעה המקומית המדווחת. מיועדת להצגה. |
+| `minute_of_day` | דקות 0–1439 | אותה שעה כמספר, מתחילת יום הדיווח. |
+| `coffee_mg` | מ״ג קפאין | סכום הקפאין מפריטי הקפה המזכים בדקה זו. |
+| `event_caffeine_mg` | מ״ג קפאין | סכום הקפאין בדקה זו מקפה, תה, שתייה קלה ומשקאות ספורט או אנרגיה שעברו את הסף. |
+| `day_caffeine_mg_to_now` | מ״ג קפאין | ערך מצטבר מהקטגוריות שנבחרו מתחילת היום ועד האירוע הנוכחי כולל. |
+| `prior_coffee_events` | ספירה | מספר דקות קפה מוקדמות יותר באותו יום. |
+| `prior_caffeine_events` | ספירה | מספר דקות שתייה מזכות מוקדמות יותר באותו יום, כולל קפה. |
+| `minutes_since_prior_coffee` | דקות או חסר | פער מהקפה הקודם. חסר באירוע הקפה הראשון באותו יום. |
+| `same_minute_items` | ספירה | מספר פריטי משקה שעברו סף בדקת האירוע. |
+| `high_dose_flag` | 0 או 1 | 1 אם סך הקפאין המדווח בדקה הוא 1,000 מ״ג ומעלה. מיועד לבקרת איכות. |
+| `has_next_coffee` | 0 או 1 | היעד הראשי. 1 אם יש דקת קפה מאוחרת יותר באותו יום דיווח. |
+| `minutes_to_next_coffee` | דקות או חסר | יעד משני. פער עד הדקה המאוחרת הקרובה ביותר. חסר כשאין אירוע המשך מדווח. |
 
-To rebuild: `python data/prepare_data.py` from the repo root.
+## שחזור
 
-## Source
+`python data/build_next_coffee.py` בונה את הטבלה מקובצי `DR1IFF_J.xpt`, `DR2IFF_J.xpt`, `DEMO_J.xpt` ומיפוי `WWEIA1718_foodcat_FNDDS.xlsx`. הקישורים מופיעים בסקריפט. הוא בודק את הייחודיות של שורת המקור, את מפתחות החיבור, את הפערים החיוביים, את החוסרים הצפויים ואת ההפרדה בין משתתפי האימון והמבחן. `data_quality.json` מתעד גם את החתימות של ארבעת קובצי המקור.
 
-NHANES 2017–2018, the US national health and nutrition survey (CDC). Each participant
-reports everything they ate and drank over 24 hours, including the **clock time** of
-each item and its **caffeine mg**. Most people have two non-consecutive recall days.
+`analysis.FEATURES` מגדיר את שדות הקלט הזמינים מאותו יום ובאותו רגע. בממשק שיממש את המודל המשתמש יצטרך לתעד גם את יתר סוגי המשקה כדי להפיק את מאפייני ההיסטוריה באותה צורה. אם יתועד רק קפה, יש לאמן ולהעריך גרסה על שדות שאפשר להפיק מיומן קפה בלבד.
 
-- Day 1 items: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DR1IFF_J.xpt
-- Day 2 items: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DR2IFF_J.xpt
-- Demographics: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DEMO_J.xpt
-- Food names: https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DRXFCD_J.xpt
-- Documentation: https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?BeginYear=2017
-
-## Columns of `caffeine_events.csv`
-
-| Column | Meaning |
-|---|---|
-| `person_id` | NHANES participant id (SEQN) |
-| `recall_day` | 1 or 2 (the two recall days are 3–10 days apart) |
-| `weekday` | Sun…Sat |
-| `time` / `hour` | Clock time of the drink (`08:30` / `8.5`) |
-| `category` | coffee / tea / soda / energy |
-| `item` | Food description, e.g. `COFFEE, BREWED` |
-| `caffeine_mg` | Caffeine in this drink (mg) |
-| `occasion` | breakfast / lunch / dinner / snack / drink / extended |
-| `age` | Years (80 means 80+) |
-| `sex` | male / female |
-
-No missing values after filtering. Times are self-reported and often rounded to the
-half hour.
+גיל ומין זמינים לתיאור המדגם ולבדיקות ביצועים לפי קבוצה. היעדים, המזהים, יום הראיון, סימון החריגים והחלוקה אינם שדות קלט. הבדיקה מבוססת על שעת אירוע מדווחת, ולכן מודל שנקרא רק אחרי תיעוד כוס אינו רלוונטי לחיזוי הכוס הראשונה של יום ללא לוג.

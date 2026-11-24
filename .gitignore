@@ -12,7 +12,7 @@ venv/
 .streamlit/secrets.toml
 *.key
 
-# Raw NHANES downloads (~145 MB). Rebuild with: python data/prepare_data.py
+# Raw NHANES and USDA downloads (~145 MB). Rebuild with: python data/build_next_coffee.py
 data/raw/
 
 # Trained models / large files
