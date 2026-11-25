@@ -4,7 +4,7 @@
 
 רושמים כוס קפה, ו־NextCup עונה על שתי שאלות: האם צפויה עוד כוס היום, ואם כן, בעוד כמה זמן. כך אפשר לתכנן את הקפה הבא במקום לשתות מתוך הרגל.
 
-📁 **הריפו של הצוות:** [github.com/yairzvulunov552-web/NextCup](https://github.com/yairzvulunov552-web/NextCup) · 🔗 **האפליקציה הראשונה (M1):** [NextCup בדפדפן](https://claude.ai/artifact/VYtcfAC9qJo8xFCdsj6svG?sk=XIbohddQbr__oy00HdKXfg)
+📁 **הריפו של הצוות:** [github.com/Ariel-Vibe-Algorithm/NextCup](https://github.com/Ariel-Vibe-Algorithm/NextCup) · 🔗 **האפליקציה הראשונה (M1):** [NextCup בדפדפן](https://claude.ai/artifact/VYtcfAC9qJo8xFCdsj6svG?sk=XIbohddQbr__oy00HdKXfg)
 
 ---
 
